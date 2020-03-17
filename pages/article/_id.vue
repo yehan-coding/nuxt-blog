@@ -5,9 +5,9 @@
 <script>
 import { getDetail } from '@/api/article'
 export default {
-  async asyncData ({ params }) {
-    let { content } = await getDetail(params.id)
-    return { detail: content }
+  async asyncData ({ $axios, params }) {
+    let { data } = await getDetail($axios, params.id)
+    return { detail: data.content }
   }
 }
 </script>

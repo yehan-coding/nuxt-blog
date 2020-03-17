@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <ul>
-      <li v-for="item in articleList" :key="item.id">
+      <li v-for="item in list" :key="item.id">
         <nuxt-link :to="{ path: `/article/${ item.id }`}" tag="div" class="img">
           <img :src="item.image" :alt="item.title">
         </nuxt-link>
@@ -33,9 +33,9 @@ export default {
       noMore: false
     }
   },
-  async asyncData () {
-    let { list } = await getList({ pageSize: 8, pageNum: 1 })
-    return { articleList: list }
+  async asyncData ({ $axios }) {
+    let { data } = await getList($axios, { pageSize: 8, pageNum: 1 })
+    return { list: data.list }
   },
   methods: {
     loadMoreData () {
@@ -44,11 +44,11 @@ export default {
         this.loadMore = false
         return true
       }
-      getList({ pageSize: 8, pageNum: this.pageNum }).then(res => {
+      getList(this.$axios, { pageSize: 8, pageNum: this.pageNum }).then(res => {
         this.loadMore = false
         this.pageNum ++
-        this.articleList = [...this.articleList, ...res.list]
-        if (res.list.length < this.pageSize) {
+        this.list = [...this.list, ...res.data.list]
+        if (res.data.list.length < this.pageSize) {
           this.noMore = true
         }
       })

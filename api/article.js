@@ -1,16 +1,9 @@
-import request from '@/plugins/axios'
-
-export function getList(params) {
-  return request({
-    url: '/article/list',
-    method: 'get',
-    params
+export function getList(axios, data) {
+  return axios.$get('/article/list', {
+    params: data
   })
 }
 
-export function getDetail(id) {
-  return request({
-    url: `/article/detail/${ id }`,
-    method: 'get'
-  })
+export function getDetail(axios, id) {
+  return axios.$get(`/article/detail/${ id }`)
 }

@@ -1,9 +1,5 @@
-import request from '@/plugins/axios'
-
-export function getList(data) {
-  return request({
-    url: '/getList',
-    method: 'post',
-    data
+export function getList(axios, data) {
+  return axios.$get('/article/list', {
+    params: data
   })
 }
