@@ -1,0 +1,9 @@
+$main-color: #ddd;
+$nav-width: 20%;
+
+@mixin p-lines($num) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $num;
+  overflow: hidden;
+}
