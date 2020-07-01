@@ -1,3 +1,11 @@
+/*
+ * @Descripttion: coding...
+ * @Version: 1.0.0版本
+ * @Author: 张彤
+ * @Date: 2020-06-29 14:56:52
+ * @LastEditors: 张彤
+ * @LastEditTime: 2020-07-01 16:49:32
+ */ 
 
 module.exports = {
   mode: 'universal',
@@ -21,6 +29,7 @@ module.exports = {
     { src: '~assets/css/style.css' }
   ],
   plugins: [
+    '~/plugins/axios'
   ],
   buildModules: [
   ],
@@ -32,7 +41,8 @@ module.exports = {
   },
   proxy: {
     '/api': {
-      target: 'https://api.yesterdaypub.cn',
+      target: 'https://api.zhangtong.work',
+      secure: false,
       changeOrigin: true,
       pathRewrite: {
         '^/api': ''
